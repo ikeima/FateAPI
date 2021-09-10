@@ -5,15 +5,15 @@ using System.Text;
 
 namespace FateAPI.Models
 {
-    class ExtraAssets
+    public class ExtraAssets
     {
         public CharaGraph charaGraph { get; set; }
     }
-    class CharaGraph
+    public class CharaGraph
     {
         public Ascension ascension { get; set; }
     }
-    class Ascension
+    public class Ascension
     {
         [JsonProperty("1")]
         public string first { get; set; }

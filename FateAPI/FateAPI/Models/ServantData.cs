@@ -1,6 +1,6 @@
 ﻿namespace FateAPI.Models
 {
-    class ServantData
+    public class ServantData
     {
         public int id { get; set; }
         public int collectionNo { get; set; }

@@ -3,9 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FateAPI.Views.MainPage"
              Title="{Binding Title}">
+    <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <ScrollView>
+            <FlexLayout
+            Margin="0,0"
+            HorizontalOptions="Center"
+            VerticalOptions="StartAndExpand"
+            Direction="Row"
+            Wrap="Wrap"
+            BindableLayout.ItemsSource="{Binding Servants}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="0,0" HorizontalOptions="Start" WidthRequest="100" HeightRequest="200" >
+                            <Image Source="{Binding extraAssets.charaGraph.ascension.first}" HeightRequest="150" WidthRequest="150"/>
+                            <Label Text="{Binding name}" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </ScrollView>
+        
+      
+    </Grid>
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
-    </StackLayout>
 
 </ContentPage>

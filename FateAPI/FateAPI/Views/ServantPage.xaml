@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FateAPI.Views.ServantPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <StackLayout>
+        <StackLayout HorizontalOptions="Center">
+            <Label Text="{Binding Servant.name}" FontSize="Title"  HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding Servant.className}" HorizontalTextAlignment="Center" FontSize="Subtitle" TextTransform="Uppercase" />
+        </StackLayout>
+        
+
+        <CarouselView
+            
+            Margin="0,0"
+            HorizontalOptions="Center"
+            ItemsSource="{Binding Sprites}"
+            VerticalOptions="Center">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Frame HorizontalOptions="Center" CornerRadius="5" HasShadow="True">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <Image Aspect="AspectFill" Source="{Binding }" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </StackLayout>
+
+
+
+
+
+
+</ContentPage>

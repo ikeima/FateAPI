@@ -4,31 +4,47 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:prism="http://prismlibrary.com"
-    prism:ViewModelLocator.AutowireViewModel="True">
-    <StackLayout>
-        <StackLayout HorizontalOptions="Center">
-            <Label Text="{Binding Servant.name}" FontSize="Title"  HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding Servant.className}" HorizontalTextAlignment="Center" FontSize="Subtitle" TextTransform="Uppercase" />
-        </StackLayout>
-        
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Background="White">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout HorizontalOptions="Center">
+                <Label
+                    FontSize="Title"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Servant.name}" />
+                <Label
+                    FontSize="Subtitle"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Servant.className}"
+                    TextTransform="Uppercase" />
+            </StackLayout>
 
-        <CarouselView
-            
-            Margin="0,0"
-            HorizontalOptions="Center"
-            ItemsSource="{Binding Sprites}"
-            VerticalOptions="Center">
-            <CarouselView.ItemTemplate>
-                <DataTemplate>
-                    <Frame HorizontalOptions="Center" CornerRadius="5" HasShadow="True">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                            <Image Aspect="AspectFill" Source="{Binding }" />
+            <CarouselView Margin="0,0" ItemsSource="{Binding Servant.extraAssets.charaGraph.ascension}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame>
+                            <Image Source="{Binding Value}" />
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <CarouselView ItemsSource="{Binding Servant.skills}" VerticalOptions="Start">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Image Source="{Binding icon}" />
+                            <Label HorizontalOptions="Center" Text="{Binding name}" />
+                            <Label HorizontalOptions="Center" Text="{Binding detail}" />
                         </StackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CarouselView.ItemTemplate>
-        </CarouselView>
-    </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+        </StackLayout>
+    </ScrollView>
 
 
 

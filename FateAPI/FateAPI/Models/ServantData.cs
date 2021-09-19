@@ -1,4 +1,5 @@
 ﻿using FateAPI.Models;
+using FateAPI.Models.SkillsFolder;
 
 namespace FateAPI.ViewModels
 {
@@ -11,6 +12,7 @@ namespace FateAPI.ViewModels
         public string face { get; set; }
         public int rarity { get; set; }
         public ExtraAssets extraAssets { get; set; }
+        public Skill[] skills { get; set; }
 
     }
 }

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Collections.ObjectModel;
 using FateAPI.Models.ExtraAssetsFolder.CharaGraphFolder;
+using System.Collections.Generic;
+using FateAPI.Models.SkillsFolder;
+using System.Linq;
 
 namespace FateAPI.ViewModels
 {
@@ -34,6 +37,7 @@ namespace FateAPI.ViewModels
             set { SetProperty(ref _sprites, value); }
         }
 
+
         public ServantPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             
@@ -47,20 +51,17 @@ namespace FateAPI.ViewModels
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             id = parameters.GetValue<int>("int").ToString();
-            GetServant();
+            GetServant();   
+
 
         }
 
         private async Task GetServantAsync()
-        {
+        {   
             var res = await web.HttpMethod(HttpMethod.Get)
                 .Execute<ServantData>($"https://api.atlasacademy.io/nice/NA/servant/{id}?lang=en", new CancellationToken());
             Servant = res.Result;
-            Servants.Add(Servant);
-            Sprites.Add(Servant.extraAssets.charaGraph.ascension.first);
-            Sprites.Add(Servant.extraAssets.charaGraph.ascension.second);
-            Sprites.Add(Servant.extraAssets.charaGraph.ascension.third);
-            Sprites.Add(Servant.extraAssets.charaGraph.ascension.four);
+            //Servant.extraAssets.charaGraph.ascension.ForEach(s => Sprites.Add(s.Value));
         }
     }
 }

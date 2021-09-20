@@ -30,8 +30,23 @@
                                 TextTransform="Uppercase" />
                             <Label HorizontalOptions="Start" Text="{Binding rarity, StringFormat='{0}★'}" />
                         </StackLayout>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Focused">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="LightGray" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="White" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                     </StackLayout>
                 </DataTemplate>
+
             </CollectionView.ItemTemplate>
         </CollectionView>
     </Grid>

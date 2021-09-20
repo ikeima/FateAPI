@@ -3,48 +3,157 @@
     x:Class="FateAPI.Views.ServantPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:FateAPI.Services.Converters"
     xmlns:prism="http://prismlibrary.com"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    Title="{Binding Servant.name}"
     prism:ViewModelLocator.AutowireViewModel="True"
     Background="White">
-    <ScrollView>
-        <StackLayout>
-            <StackLayout HorizontalOptions="Center">
-                <Label
-                    FontSize="Title"
-                    HorizontalTextAlignment="Center"
-                    Text="{Binding Servant.name}" />
-                <Label
-                    FontSize="Subtitle"
-                    HorizontalTextAlignment="Center"
-                    Text="{Binding Servant.className}"
-                    TextTransform="Uppercase" />
-            </StackLayout>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:TypeToImageConverter x:Key="typeToImageConverter" />
+            <local:TypeToImageCardConverter x:Key="typeToCardConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Margin="0,20,0,0" HorizontalOptions="Center">
+                    <Label
+                        FontSize="Title"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Servant.name}" />
+                    <Label
+                        FontSize="Subtitle"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Servant.className}"
+                        TextTransform="Uppercase" />
+                </StackLayout>
 
-            <CarouselView Margin="0,0" ItemsSource="{Binding Servant.extraAssets.charaGraph.ascension}">
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame>
+                <CarouselView
+                    Margin="0,0"
+                    HeightRequest="350"
+                    ItemsSource="{Binding Servant.extraAssets.charaGraph.ascension}"
+                    VerticalOptions="StartAndExpand">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+
                             <Image Source="{Binding Value}" />
-                        </Frame>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
 
-            <CarouselView ItemsSource="{Binding Servant.skills}" VerticalOptions="Start">
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Image Source="{Binding icon}" />
-                            <Label HorizontalOptions="Center" Text="{Binding name}" />
-                            <Label HorizontalOptions="Center" Text="{Binding detail}" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
 
-        </StackLayout>
-    </ScrollView>
+
+
+                <xct:Expander>
+                    <xct:Expander.Header>
+                        <Grid>
+                            <Label FontSize="25" Text="Skills" />
+                            <Image
+                                HeightRequest="40"
+                                HorizontalOptions="End"
+                                Source="expand.png"
+                                VerticalOptions="Start"
+                                WidthRequest="40">
+                                <Image.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={RelativeSource AncestorType={x:Type xct:Expander}}, Path=IsExpanded}"
+                                        TargetType="Image"
+                                        Value="True">
+                                        <Setter Property="Source" Value="collapse.png" />
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+                        </Grid>
+                    </xct:Expander.Header>
+                    <xct:Expander.Content>
+                        <CarouselView
+                            HeightRequest="150"
+                            ItemsSource="{Binding Servant.skills}"
+                            VerticalOptions="Start">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Image Source="{Binding icon}" />
+                                        <Label HorizontalOptions="Center" Text="{Binding name}" />
+                                        <Label HorizontalOptions="Center" Text="{Binding detail}" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                    </xct:Expander.Content>
+                </xct:Expander>
+
+
+                <xct:Expander>
+                    <xct:Expander.Header>
+                        <Grid>
+                            <Label FontSize="25" Text="Noble Phantasms" />
+                            <Image
+                                HeightRequest="40"
+                                HorizontalOptions="End"
+                                Source="expand.png"
+                                VerticalOptions="Start"
+                                WidthRequest="40">
+                                <Image.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={RelativeSource AncestorType={x:Type xct:Expander}}, Path=IsExpanded}"
+                                        TargetType="Image"
+                                        Value="True">
+                                        <Setter Property="Source" Value="collapse.png" />
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+                        </Grid>
+                    </xct:Expander.Header>
+                    <xct:Expander.Content>
+                        <CarouselView ItemsSource="{Binding Servant.noblePhantasms}">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Grid HorizontalOptions="Center">
+                                            <Image Source="{Binding card, Converter={StaticResource typeToCardConverter}}" />
+                                            <Image
+                                                HorizontalOptions="Center"
+                                                Source="{Binding Path=card, Converter={StaticResource typeToImageConverter}}"
+                                                VerticalOptions="Center" />
+                                            <Image
+                                                Margin="0,0,0,0"
+                                                HeightRequest="100"
+                                                HorizontalOptions="Center"
+                                                Source="{Binding icon}"
+                                                VerticalOptions="Start" />
+
+                                        </Grid>
+
+                                        <Label
+                                            Margin="0,0,0,0"
+                                            FontSize="20"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding name}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            HorizontalOptions="Center"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding detail}"
+                                            VerticalOptions="End" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+
+                        </CarouselView>
+
+                    </xct:Expander.Content>
+                </xct:Expander>
+
+
+
+            </StackLayout>
+        </ScrollView>
+
+
+    </Grid>
 
 
 

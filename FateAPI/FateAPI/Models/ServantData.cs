@@ -12,7 +12,8 @@ namespace FateAPI.ViewModels
         public string face { get; set; }
         public int rarity { get; set; }
         public ExtraAssets extraAssets { get; set; }
-        public Skill[] skills { get; set; }
+        public Models.SkillsFolder.Skill[] skills { get; set; }
+        public NoblePhantasm[] noblePhantasms { get; set; }
 
     }
 }

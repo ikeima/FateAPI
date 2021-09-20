@@ -61,7 +61,6 @@ namespace FateAPI.ViewModels
             var res = await web.HttpMethod(HttpMethod.Get)
                 .Execute<ServantData>($"https://api.atlasacademy.io/nice/NA/servant/{id}?lang=en", new CancellationToken());
             Servant = res.Result;
-            //Servant.extraAssets.charaGraph.ascension.ForEach(s => Sprites.Add(s.Value));
         }
     }
 }

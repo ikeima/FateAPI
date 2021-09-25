@@ -3,6 +3,7 @@
     x:Class="FateAPI.Views.ServantPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:local="clr-namespace:FateAPI.Services.Converters"
     xmlns:prism="http://prismlibrary.com"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
@@ -38,7 +39,7 @@
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
 
-                            <Image Source="{Binding Value}" />
+                            <ffimageloading:CachedImage Source="{Binding Value}" />
 
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
@@ -68,10 +69,8 @@
                         </Grid>
                     </xct:Expander.Header>
                     <xct:Expander.Content>
-                        <CarouselView
-                            HeightRequest="150"
-                            ItemsSource="{Binding Servant.skills}"
-                            VerticalOptions="Start">
+
+                        <CarouselView ItemsSource="{Binding Servant.skills}">
                             <CarouselView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>

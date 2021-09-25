@@ -1,6 +1,7 @@
 using System;
 using Android.App;
 using Android.Runtime;
+using FFImageLoading.Forms.Platform;
 
 namespace FateAPI.Droid
 {
@@ -18,6 +19,7 @@ namespace FateAPI.Droid
         {
             base.OnCreate();
             Xamarin.Essentials.Platform.Init(this);
+            CachedImageRenderer.InitImageViewHandler();
         }
     }
 }

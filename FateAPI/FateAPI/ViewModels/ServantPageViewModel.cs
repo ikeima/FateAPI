@@ -10,6 +10,8 @@ using FateAPI.Models.ExtraAssetsFolder.CharaGraphFolder;
 using System.Collections.Generic;
 using FateAPI.Models.SkillsFolder;
 using System.Linq;
+using System.Windows.Input;
+using MvvmHelpers.Commands;
 
 namespace FateAPI.ViewModels
 {
@@ -37,11 +39,13 @@ namespace FateAPI.ViewModels
             set { SetProperty(ref _sprites, value); }
         }
 
-
+        public ICommand UpdateSizeCommand { get; set; }
+        
         public ServantPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            
+            UpdateSizeCommand?.Execute(null);
         }
+       
 
         private async void GetServant()
         {

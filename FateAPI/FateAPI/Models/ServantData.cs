@@ -14,6 +14,8 @@ namespace FateAPI.ViewModels
         public ExtraAssets extraAssets { get; set; }
         public Models.SkillsFolder.Skill[] skills { get; set; }
         public NoblePhantasm[] noblePhantasms { get; set; }
+        public Gender gender { get; set; }
+        public Attribute attribute { get; set; }
 
     }
 }

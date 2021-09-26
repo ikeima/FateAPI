@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Xamarin.CommunityToolkit.UI.Views;
+using Xamarin.Forms;
 
 namespace FateAPI.Views
 {
@@ -7,6 +8,13 @@ namespace FateAPI.Views
         public ServantPage()
         {
             InitializeComponent();
+        }
+
+        private void Expander_Tapped(object sender, System.EventArgs e)
+        {
+            //var expander = sender as Expander;
+            //expander.ForceUpdateSize();
+                
         }
     }
 }

@@ -31,23 +31,50 @@
                         TextTransform="Uppercase" />
                 </StackLayout>
 
-                <CarouselView
-                    Margin="0,0"
-                    HeightRequest="350"
-                    ItemsSource="{Binding Servant.extraAssets.charaGraph.ascension}"
-                    VerticalOptions="StartAndExpand">
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
+                <StackLayout>
+                    <CarouselView
+                        Margin="0,0"
+                        HeightRequest="350"
+                        ItemsSource="{Binding Servant.extraAssets.charaGraph.ascension}"
+                        Loop="False"
+                        VerticalOptions="StartAndExpand">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
 
-                            <ffimageloading:CachedImage Source="{Binding Value}" />
+                                <ffimageloading:CachedImage Source="{Binding Value}" />
 
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
-
-
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                </StackLayout>
 
                 <xct:Expander>
+                    <xct:Expander.Header>
+                        <Grid>
+                            <Label FontSize="25" Text="Stats" />
+                            <Image
+                                HeightRequest="40"
+                                HorizontalOptions="End"
+                                Source="expand.png"
+                                VerticalOptions="Start"
+                                WidthRequest="40">
+                                <Image.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={RelativeSource AncestorType={x:Type xct:Expander}}, Path=IsExpanded}"
+                                        TargetType="Image"
+                                        Value="True">
+                                        <Setter Property="Source" Value="collapse.png" />
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+                        </Grid>
+                    </xct:Expander.Header>
+                    <xct:Expander.Content>
+                        <Grid />
+                    </xct:Expander.Content>
+                </xct:Expander>
+
+                <xct:Expander ForceUpdateSizeCommand="{Binding UpdateSizeCommand}" Tapped="Expander_Tapped">
                     <xct:Expander.Header>
                         <Grid>
                             <Label FontSize="25" Text="Skills" />
@@ -69,14 +96,22 @@
                         </Grid>
                     </xct:Expander.Header>
                     <xct:Expander.Content>
-
-                        <CarouselView ItemsSource="{Binding Servant.skills}">
+                        <CarouselView
+                            HeightRequest="150"
+                            ItemsSource="{Binding Servant.skills}"
+                            Loop="False">
                             <CarouselView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
-                                        <Image Source="{Binding icon}" />
+                                        <ffimageloading:CachedImage
+                                            CacheType="Memory"
+                                            HeightRequest="50"
+                                            Source="{Binding icon}" />
                                         <Label HorizontalOptions="Center" Text="{Binding name}" />
-                                        <Label HorizontalOptions="Center" Text="{Binding detail}" />
+                                        <Label
+                                            HorizontalOptions="Center"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding detail}" />
                                     </StackLayout>
                                 </DataTemplate>
                             </CarouselView.ItemTemplate>
@@ -84,8 +119,7 @@
                     </xct:Expander.Content>
                 </xct:Expander>
 
-
-                <xct:Expander>
+                <xct:Expander ForceUpdateSizeCommand="{Binding UpdateSizeCommand}">
                     <xct:Expander.Header>
                         <Grid>
                             <Label FontSize="25" Text="Noble Phantasms" />
@@ -107,12 +141,12 @@
                         </Grid>
                     </xct:Expander.Header>
                     <xct:Expander.Content>
-                        <CarouselView ItemsSource="{Binding Servant.noblePhantasms}">
+                        <CarouselView ItemsSource="{Binding Servant.noblePhantasms}" Loop="False">
                             <CarouselView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
                                         <Grid HorizontalOptions="Center">
-                                            <Image Source="{Binding card, Converter={StaticResource typeToCardConverter}}" />
+                                            <ffimageloading:CachedImage Source="{Binding card, Converter={StaticResource typeToCardConverter}}" />
                                             <Image
                                                 HorizontalOptions="Center"
                                                 Source="{Binding Path=card, Converter={StaticResource typeToImageConverter}}"

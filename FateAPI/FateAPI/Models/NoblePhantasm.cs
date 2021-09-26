@@ -73,7 +73,7 @@
         public Extraassets extraAssets { get; set; }
         public string gender { get; set; }
         public string attribute { get; set; }
-        public Trait[] traits { get; set; }
+        public Traits[] traits { get; set; }
         public int starAbsorb { get; set; }
         public int starGen { get; set; }
         public int instantDeathChance { get; set; }
@@ -722,7 +722,7 @@
         public int[] condValues { get; set; }
     }
 
-    public class Trait
+    public class Traits
     {
         public int id { get; set; }
         public string name { get; set; }

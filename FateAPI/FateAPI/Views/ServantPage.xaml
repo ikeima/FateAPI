@@ -16,7 +16,7 @@
             <local:TypeToImageConverter x:Key="typeToImageConverter" />
             <local:TypeToImageCardConverter x:Key="typeToCardConverter" />
             <local:RarityToImageConverter x:Key="rarityToImageConverter" />
-            <local:ClassNameToImageConverter x:Key="classNameToImageConverter" />
+            <!--<local:ClassNameToImageConverter x:Key="classNameToImageConverter" />-->
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
@@ -36,7 +36,7 @@
                             TextTransform="Uppercase" />
                     </StackLayout>
 
-                    <ffimageloading:CachedImage HeightRequest="15" Source="{Binding Servant.rarity, Converter={StaticResource rarityToImageConverter}}" />
+                    <!--<ffimageloading:CachedImage HeightRequest="15" Source="{Binding Servant.rarity, Converter={StaticResource rarityToImageConverter}}" />-->
                 </StackLayout>
 
                 <StackLayout>

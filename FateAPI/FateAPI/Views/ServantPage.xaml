@@ -16,7 +16,7 @@
             <local:TypeToImageConverter x:Key="typeToImageConverter" />
             <local:TypeToImageCardConverter x:Key="typeToCardConverter" />
             <local:RarityToImageConverter x:Key="rarityToImageConverter" />
-            <!--<local:ClassNameToImageConverter x:Key="classNameToImageConverter" />-->
+            <local:ClassNameToImageConverter x:Key="classNameToImageConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
@@ -27,16 +27,25 @@
                         FontSize="Title"
                         HorizontalTextAlignment="Center"
                         Text="{Binding Servant.name}" />
-                    <StackLayout Orientation="Horizontal">
-                        <ffimageloading:CachedImage Source="{Binding Servant.className, Converter={StaticResource}}" />
+                    <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                        <Image HeightRequest="30">
+                            <Image.Source>
+                                <MultiBinding Converter="{StaticResource classNameToImageConverter}">
+                                    <Binding Path="Servant.className" />
+                                    <Binding Path="Servant.rarity" />
+                                </MultiBinding>
+                            </Image.Source>
+                        </Image>
+
                         <Label
                             FontSize="Subtitle"
                             HorizontalTextAlignment="Center"
                             Text="{Binding Servant.className}"
-                            TextTransform="Uppercase" />
+                            TextTransform="Uppercase"
+                            VerticalOptions="Center" />
                     </StackLayout>
 
-                    <!--<ffimageloading:CachedImage HeightRequest="15" Source="{Binding Servant.rarity, Converter={StaticResource rarityToImageConverter}}" />-->
+                    <ffimageloading:CachedImage HeightRequest="15" Source="{Binding Servant.rarity, Converter={StaticResource rarityToImageConverter}}" />
                 </StackLayout>
 
                 <StackLayout>
@@ -179,7 +188,6 @@
                         </CollectionView>
                     </expandable:ExpandableView.SecondaryView>
                 </expandable:ExpandableView>
-
 
                 <xct:Expander ForceUpdateSizeCommand="{Binding UpdateSizeCommand}">
                     <xct:Expander.Header>

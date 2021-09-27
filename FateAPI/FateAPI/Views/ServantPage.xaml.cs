@@ -12,9 +12,10 @@ namespace FateAPI.Views
 
         private void Expander_Tapped(object sender, System.EventArgs e)
         {
-            //var expander = sender as Expander;
+            //var expander = sender as Xamarin.CommunityToolkit.UI.Views.Expander;
             //expander.ForceUpdateSize();
-                
+            
+          
         }
     }
 }

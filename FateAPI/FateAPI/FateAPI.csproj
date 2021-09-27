@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="OC.Xamarin.Forms.ExpandableView" Version="1.0.0" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
     <PackageReference Include="SupportLib" Version="1.1.7.15" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />

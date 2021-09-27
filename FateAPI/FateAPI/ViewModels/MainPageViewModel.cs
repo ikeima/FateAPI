@@ -47,6 +47,12 @@ namespace FateAPI.ViewModels
                 Title = "SERVANTS",
                 Icon = "class3_1002"
             });
+            MenuItems.Add(new MenuModel()
+            {
+                Id = 1,
+                Title = "CRAFT ESSENCES",
+                Icon = "craft"
+            });
 
         }
         public event PropertyChangedEventHandler PropertyChanged;

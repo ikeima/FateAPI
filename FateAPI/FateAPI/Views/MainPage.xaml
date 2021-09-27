@@ -22,7 +22,7 @@
                     <StackLayout Padding="20" Orientation="Horizontal">
                         <Image HeightRequest="30" Source="{Binding Icon}" />
                         <Label
-                            FontSize="20"
+                            FontSize="15"
                             Text="{Binding Title}"
                             VerticalOptions="Center" />
                         <VisualStateManager.VisualStateGroups>

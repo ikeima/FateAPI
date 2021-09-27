@@ -70,7 +70,17 @@
                         </Grid>
                     </xct:Expander.Header>
                     <xct:Expander.Content>
-                        <Grid />
+                        <CarouselView ItemsSource="{Binding Servant.skills}">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Image Source="{Binding icon}" />
+                                        <Label HorizontalOptions="Center" Text="{Binding name}" />
+                                        <Label HorizontalOptions="Center" Text="{Binding detail}" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
                     </xct:Expander.Content>
                 </xct:Expander>
 

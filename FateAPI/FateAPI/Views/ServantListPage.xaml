@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FateAPI.Views.ServantListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <Grid VerticalOptions="CenterAndExpand">
+        <CollectionView
+            ItemsSource="{Binding Servants}"
+            SelectedItem="{Binding SelectedServant}"
+            SelectionChangedCommand="{Binding SelectServantCommand}"
+            SelectionChangedCommandParameter="{Binding SelectedServant}"
+            SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" Orientation="Horizontal">
+                        <Image
+                            HeightRequest="70"
+                            Source="{Binding face}"
+                            WidthRequest="70" />
+
+                        <StackLayout>
+                            <Label HorizontalTextAlignment="Start" Text="{Binding name}" />
+                            <Label
+                                HorizontalTextAlignment="Start"
+                                Text="{Binding className}"
+                                TextTransform="Uppercase" />
+                            <Label HorizontalOptions="Start" Text="{Binding rarity, StringFormat='{0}★'}" />
+                        </StackLayout>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Focused">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="LightGray" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="White" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </StackLayout>
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>

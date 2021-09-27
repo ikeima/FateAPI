@@ -1,80 +1,63 @@
-﻿using FateAPI.Models;
-using MvvmHelpers.Commands;
-using Prism.Navigation;
-using SupportLib.Extensions;
-using SupportLib.Services;
+﻿using FateAPI.Models.MenuModelFolder;
+using FateAPI.Views;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace FateAPI.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : INotifyPropertyChanged
     {
-        Web web = new Web();
-        private ServantBaseData _servant;
-        public ServantBaseData Servant
+
+        private List<MenuModel> _menuItems = new List<MenuModel>();
+        public List<MenuModel> MenuItems
         {
-            get { return _servant; }
-            set { SetProperty(ref _servant, value); }
-        }
-        private ServantBaseData _selectedServant;
-        public ServantBaseData SelectedServant
-        {
-            get { return _selectedServant; }
-            set { SetProperty(ref _selectedServant, value); }
+            get { return _menuItems; }
+            set { _menuItems = value; RaisePropertyChanged(); }
         }
 
-        private ObservableCollection<ServantBaseData> _servants = new ObservableCollection<ServantBaseData>();
-        public ObservableCollection<ServantBaseData> Servants
+        private ContentPage _contentPage;
+
+        public ContentPage ContentPage
         {
-            get { return _servants; }
-            set { SetProperty(ref _servants, value); }
+            get { return _contentPage; }
+            set { _contentPage = value; RaisePropertyChanged(); }
         }
 
-        public ICommand SelectServantCommand { get; }
-        public MainPageViewModel(INavigationService navigationService)
-            : base(navigationService)
+
+        public ICommand TapMenuItemCommand { get; }
+        public MainPageViewModel()
         {
-            Title = "Main Page";
-            Response();
-            SelectServantCommand = new AsyncCommand(Navigate);
+            FillMenu();
+            TapMenuItemCommand = new Command(OpenPage);
         }
-        private async Task Navigate()
+
+        private async void OpenPage()
         {
-            var navigationParams = new NavigationParameters()
+            
+        }
+
+        private void FillMenu()
+        {
+            MenuItems.Add(new MenuModel()
             {
-                { "int", SelectedServant.collectionNo }
-            };
-            await NavigationService.NavigateAsync("ServantPage", navigationParams);
-        }
+                Id = 0,
+                Title = "SERVANTS",
+                Icon = "class3_1002"
+            });
 
-        private async void Response()
-        {
-            await GetServants();
         }
-        private async Task GetServants()
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void RaisePropertyChanged([CallerMemberName] string caller = "")
         {
-            for (int i = 1; i < 100; i++)
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
             {
-                var res = await web.HttpMethod(HttpMethod.Get)
-                    .Execute<ServantBaseData>($"https://api.atlasacademy.io/basic/NA/servant/{i}?lang=en", new System.Threading.CancellationToken());
-
-                res.Result.face = Rename(res.Result.face);
-                Servant = res.Result;
-                Servants.Add(Servant);
+                handler.Invoke(this, new PropertyChangedEventArgs(caller));
             }
         }
 
-        private string Rename(string face)
-        {
-            int ind = face.IndexOf('_');
-            face = face.Insert(ind+8, "_bordered");
-            return face;
-        }
     }
 }

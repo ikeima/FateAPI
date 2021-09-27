@@ -27,6 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DevExpress.XamarinForms.Charts" Version="21.1.5" />
+    <PackageReference Include="DevExpress.XamarinForms.CollectionView" Version="21.1.5" />
+    <PackageReference Include="DevExpress.XamarinForms.Editors" Version="21.1.5" />
+    <PackageReference Include="DevExpress.XamarinForms.Grid" Version="21.1.5" />
+    <PackageReference Include="DevExpress.XamarinForms.Navigation" Version="21.1.5" />
+    <PackageReference Include="DevExpress.XamarinForms.Scheduler" Version="21.1.5" />
     <PackageReference Include="OC.Xamarin.Forms.ExpandableView" Version="1.0.0" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
     <PackageReference Include="SupportLib" Version="1.1.7.15" />
@@ -39,6 +45,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\ServantListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ServantPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

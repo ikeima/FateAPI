@@ -1,35 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<dxn:DrawerPage
     x:Class="FateAPI.Views.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Servants">
-    <Grid VerticalOptions="CenterAndExpand">
+    xmlns:dxn="http://schemas.devexpress.com/xamarin/2014/forms/navigation"
+    xmlns:local="clr-namespace:FateAPI.ViewModels"
+    xmlns:local1="clr-namespace:FateAPI.Views"
+    Title="Grand Info">
+    <dxn:DrawerPage.BindingContext>
+        <local:MainPageViewModel />
+    </dxn:DrawerPage.BindingContext>
+
+    <dxn:DrawerPage.DrawerContent>
         <CollectionView
-            ItemsSource="{Binding Servants}"
-            SelectedItem="{Binding SelectedServant}"
-            SelectionChangedCommand="{Binding SelectServantCommand}"
-            SelectionChangedCommandParameter="{Binding SelectedServant}"
+            ItemsSource="{Binding MenuItems}"
+            SelectionChangedCommand="{Binding TapMenuItemCommand}"
+            SelectionChangedCommandParameter="{Binding MenuItem}"
             SelectionMode="Single">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10" Orientation="Horizontal">
-                        <Image
-                            HeightRequest="70"
-                            Source="{Binding face}"
-                            WidthRequest="70" />
-
-                        <StackLayout>
-                            <Label HorizontalTextAlignment="Start" Text="{Binding name}" />
-                            <Label
-                                HorizontalTextAlignment="Start"
-                                Text="{Binding className}"
-                                TextTransform="Uppercase" />
-                            <Label HorizontalOptions="Start" Text="{Binding rarity, StringFormat='{0}★'}" />
-                        </StackLayout>
+                    <StackLayout Padding="20" Orientation="Horizontal">
+                        <Image HeightRequest="30" Source="{Binding Icon}" />
+                        <Label
+                            FontSize="20"
+                            Text="{Binding Title}"
+                            VerticalOptions="Center" />
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup Name="CommonStates">
                                 <VisualState Name="Focused">
@@ -48,6 +43,10 @@
                 </DataTemplate>
 
             </CollectionView.ItemTemplate>
+
         </CollectionView>
-    </Grid>
-</ContentPage>
+    </dxn:DrawerPage.DrawerContent>
+
+
+    <dxn:DrawerPage.MainContent />
+</dxn:DrawerPage>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FateAPI", "FateAPI\FateAPI\FateAPI.csproj", "{44E42BD2-66A3-4773-BEE6-7A0DD7E194EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FateAPI", "FateAPI\FateAPI\FateAPI.csproj", "{44E42BD2-66A3-4773-BEE6-7A0DD7E194EA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FateAPI.Android", "FateAPI\FateAPI.Android\FateAPI.Android.csproj", "{A53D94C0-0FB4-4B23-BA12-4B17C27207E2}"
 EndProject

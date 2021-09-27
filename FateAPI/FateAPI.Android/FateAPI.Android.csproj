@@ -61,6 +61,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="DevExpress.XamarinForms.Charts">
+      <Version>21.1.5</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.XamarinForms.CollectionView">
+      <Version>21.1.5</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.XamarinForms.Editors">
+      <Version>21.1.5</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.XamarinForms.Grid">
+      <Version>21.1.5</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.XamarinForms.Navigation">
+      <Version>21.1.5</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.XamarinForms.Scheduler">
+      <Version>21.1.5</Version>
+    </PackageReference>
     <PackageReference Include="OC.Xamarin.Forms.ExpandableView">
       <Version>1.0.0</Version>
     </PackageReference>

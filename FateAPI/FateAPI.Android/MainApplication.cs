@@ -20,6 +20,7 @@ namespace FateAPI.Droid
             base.OnCreate();
             Xamarin.Essentials.Platform.Init(this);
             CachedImageRenderer.InitImageViewHandler();
+
         }
     }
 }

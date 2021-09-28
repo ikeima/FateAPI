@@ -15,7 +15,7 @@ namespace FateAPI.ViewModels
         public string face { get; set; }
         public int rarity { get; set; }
         public ExtraAssets extraAssets { get; set; }
-        public Models.SkillsFolder.Skill[] skills { get; set; }
+        public Skill[] skills { get; set; }
         public NoblePhantasm[] noblePhantasms { get; set; }
         public string gender { get; set; }
         public string attribute { get; set; }
@@ -25,8 +25,20 @@ namespace FateAPI.ViewModels
         public int instantDeathChance { get; set; }
         public string[] cards { get; set; }
         public HitsDistribution hitsDistribution { get; set; }
-
-
+        public int atkBase { get; set; }
+        public int atkMax { get; set; }
+        public int hpBase { get; set; }
+        public int hpMax { get; set; }
+        public int[] relateQuestId { get; set; }
+        public int growthCurve { get; set; }
+        public int[] atkGrowth { get; set; }
+        public int[] hpGrowth { get; set; }
+        public int[] expGrowth { get; set; }
+        public int[] bondGrowth { get; set; }
+        public int[] expFeed { get; set; }
+        public int bondEquip { get; set; }
+        public int[] valentineEquip { get; set; }
+        public ValentineScript[] valentineScript { get; set; }
 
     }
 }

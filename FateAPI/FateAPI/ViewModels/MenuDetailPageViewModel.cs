@@ -1,16 +1,13 @@
 ﻿using FateAPI.Models.MenuModelFolder;
-using FateAPI.Views;
+using Prism.Navigation;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace FateAPI.ViewModels
 {
-    public class MainPageViewModel : INotifyPropertyChanged
+    public class MenuDetailPageViewModel : ViewModelBase
     {
-
         private List<MenuModel> _menuItems = new List<MenuModel>();
         public List<MenuModel> MenuItems
         {
@@ -25,20 +22,17 @@ namespace FateAPI.ViewModels
             get { return _contentPage; }
             set { _contentPage = value; RaisePropertyChanged(); }
         }
-
-
         public ICommand TapMenuItemCommand { get; }
-        public MainPageViewModel()
+        public MenuDetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             FillMenu();
             TapMenuItemCommand = new Command(OpenPage);
-        }
 
+        }
         private async void OpenPage()
         {
-            
-        }
 
+        }
         private void FillMenu()
         {
             MenuItems.Add(new MenuModel()
@@ -55,15 +49,5 @@ namespace FateAPI.ViewModels
             });
 
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged([CallerMemberName] string caller = "")
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler.Invoke(this, new PropertyChangedEventArgs(caller));
-            }
-        }
-
     }
 }

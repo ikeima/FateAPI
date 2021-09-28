@@ -20,7 +20,7 @@ namespace FateAPI
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("MenuDetailPage/NavigationPage/ServantListPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -33,6 +33,7 @@ namespace FateAPI
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<ServantPage, ServantPageViewModel>();
             containerRegistry.RegisterForNavigation<ServantListPage, ServantListPageViewModel>();
+            containerRegistry.RegisterForNavigation<MenuDetailPage, MenuDetailPageViewModel>();
         }
     }
 }

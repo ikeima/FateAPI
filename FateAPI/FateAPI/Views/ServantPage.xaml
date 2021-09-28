@@ -87,17 +87,9 @@
                         </Grid>
                     </xct:Expander.Header>
                     <xct:Expander.Content>
-                        <CarouselView ItemsSource="{Binding Servant.skills}">
-                            <CarouselView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackLayout>
-                                        <Image Source="{Binding icon}" />
-                                        <Label HorizontalOptions="Center" Text="{Binding name}" />
-                                        <Label HorizontalOptions="Center" Text="{Binding detail}" />
-                                    </StackLayout>
-                                </DataTemplate>
-                            </CarouselView.ItemTemplate>
-                        </CarouselView>
+                        <StackLayout >
+                            
+                        </StackLayout>
                     </xct:Expander.Content>
                 </xct:Expander>
 
@@ -146,8 +138,8 @@
                     </xct:Expander.Content>
                 </xct:Expander>-->
 
-                <expandable:ExpandableView SecondaryViewHeightRequest="200">
-                    <expandable:ExpandableView.PrimaryView>
+                <xct:Expander>
+                    <xct:Expander.Header>
                         <Grid>
                             <Label FontSize="25" Text="Skills" />
                             <Image
@@ -166,8 +158,8 @@
                                 </Image.Triggers>
                             </Image>
                         </Grid>
-                    </expandable:ExpandableView.PrimaryView>
-                    <expandable:ExpandableView.SecondaryView>
+                    </xct:Expander.Header>
+                    <xct:Expander.Content>
                         <CollectionView Margin="0,0" ItemsSource="{Binding Servant.skills}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
@@ -186,8 +178,8 @@
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-                    </expandable:ExpandableView.SecondaryView>
-                </expandable:ExpandableView>
+                    </xct:Expander.Content>
+                </xct:Expander>
 
                 <xct:Expander ForceUpdateSizeCommand="{Binding UpdateSizeCommand}">
                     <xct:Expander.Header>

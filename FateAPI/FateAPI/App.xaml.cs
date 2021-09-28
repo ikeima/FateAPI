@@ -30,7 +30,6 @@ namespace FateAPI
             containerRegistry.Register<IWebService, WebService>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<ServantPage, ServantPageViewModel>();
             containerRegistry.RegisterForNavigation<ServantListPage, ServantListPageViewModel>();
             containerRegistry.RegisterForNavigation<MenuDetailPage, MenuDetailPageViewModel>();

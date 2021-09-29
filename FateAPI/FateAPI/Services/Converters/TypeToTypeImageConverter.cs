@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
-using System.Threading.Tasks;
+using System.Text;
 using Xamarin.Forms;
 
 namespace FateAPI.Services.Converters
 {
-    class TypeToImageConverter : IValueConverter
+    class TypeToTypeImageConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -14,19 +15,18 @@ namespace FateAPI.Services.Converters
                 switch (value.ToString())
                 {
                     case "buster":
-                        value = "card_icon_buster";
+                        value = "card_txt_buster";
                         break;
                     case "arts":
-                        value = "card_icon_arts";
+                        value = "card_txt_arts";
                         break;
                     case "quick":
-                        value = "card_icon_quick";
+                        value = "card_txt_quick";
                         break;
                 }
             }
             catch { }
             return value;
-
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

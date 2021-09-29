@@ -23,7 +23,7 @@ namespace FateAPI.ViewModels
         public int starAbsorb { get; set; }
         public int starGen { get; set; }
         public int instantDeathChance { get; set; }
-        public string[] cards { get; set; }
+        public List<string> cards { get; set; }
         public HitsDistribution hitsDistribution { get; set; }
         public int atkBase { get; set; }
         public int atkMax { get; set; }

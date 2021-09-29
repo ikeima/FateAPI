@@ -10,18 +10,22 @@ namespace FateAPI.Services.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            switch (value.ToString())
+            try
             {
-                case "buster":
-                    value = "card_bg_buster";
-                    break;
-                case "arts":
-                    value = "card_bg_arts";
-                    break;
-                case "quick":
-                    value = "card_bg_quick";
-                    break;
+                switch (value.ToString())
+                {
+                    case "buster":
+                        value = "card_bg_buster";
+                        break;
+                    case "arts":
+                        value = "card_bg_arts";
+                        break;
+                    case "quick":
+                        value = "card_bg_quick";
+                        break;
+                }
             }
+            catch { }
             return value;
         }
 

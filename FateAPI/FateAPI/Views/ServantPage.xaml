@@ -18,6 +18,7 @@
             <local:RarityToImageConverter x:Key="rarityToImageConverter" />
             <local:ClassNameToImageConverter x:Key="classNameToImageConverter" />
             <local:GrowthToLabelConverter x:Key="growthToLabelConverter" />
+            <local:TypeToTypeImageConverter x:Key="typeToTypeImageConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
@@ -88,54 +89,66 @@
                         </Grid>
                     </xct:Expander.Header>
                     <xct:Expander.Content>
-                        <StackLayout />
+                        <Grid
+                            ColumnDefinitions="*,*"
+                            HeightRequest="200"
+                            HorizontalOptions="Center"
+                            RowDefinitions="*,*">
+                            <StackLayout HorizontalOptions="Center">
+                                <Label FontSize="Body" Text="{Binding Servant.atkBase, StringFormat='Base attack: {0}'}" />
+                                <Label FontSize="Body" Text="{Binding Servant.atkMax, StringFormat='Max attack: {0}'}" />
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" HorizontalOptions="Center">
+                                <Label FontSize="Body" Text="{Binding Servant.hpBase, StringFormat='Base HP: {0}'}" />
+                                <Label FontSize="Body" Text="{Binding Servant.hpMax, StringFormat='Max HP: {0}'}" />
+                            </StackLayout>
+
+                            <Grid
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                HorizontalOptions="CenterAndExpand">
+                                <CollectionView
+                                    HorizontalOptions="Fill"
+                                    ItemsSource="{Binding Servant.cards}"
+                                    VerticalOptions="Start"
+                                    WidthRequest="300">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <ffimageloading:CachedImage Source="{Binding Path=.}" />
+                                                <ffimageloading:CachedImage HeightRequest="50" Source="{Binding Path=., Converter={StaticResource typeToCardConverter}}" />
+                                                <Grid Margin="0,10" VerticalOptions="End">
+                                                    <ffimageloading:CachedImage HeightRequest="40" Source="{Binding Path=., Converter={StaticResource typeToImageConverter}}" />
+                                                    <ffimageloading:CachedImage
+                                                        Margin="0,5"
+                                                        HeightRequest="30"
+                                                        Source="{Binding Path=., Converter={StaticResource typeToTypeImageConverter}}" />
+                                                </Grid>
+
+                                            </Grid>
+
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+
+                                <CollectionView ItemsSource="{Binding Servant.extraAssets.commands.ascension}">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ffimageloading:CachedImage HeightRequest="50" Source="{Binding Path=Value}" />
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </Grid>
+
+                        </Grid>
                     </xct:Expander.Content>
                 </xct:Expander>
-
-                <!--<xct:Expander ForceUpdateSizeCommand="{Binding UpdateSizeCommand}" Tapped="Expander_Tapped">
-                    <xct:Expander.Header>
-                        <Grid>
-                            <Label FontSize="25" Text="Skills" />
-                            <Image
-                                HeightRequest="40"
-                                HorizontalOptions="End"
-                                Source="expand.png"
-                                VerticalOptions="Start"
-                                WidthRequest="40">
-                                <Image.Triggers>
-                                    <DataTrigger
-                                        Binding="{Binding Source={RelativeSource AncestorType={x:Type xct:Expander}}, Path=IsExpanded}"
-                                        TargetType="Image"
-                                        Value="True">
-                                        <Setter Property="Source" Value="collapse.png" />
-                                    </DataTrigger>
-                                </Image.Triggers>
-                            </Image>
-                        </Grid>
-                    </xct:Expander.Header>
-                    <xct:Expander.Content>
-                        <CarouselView
-                            HeightRequest="150"
-                            ItemsSource="{Binding Servant.skills}"
-                            Loop="False">
-                            <CarouselView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackLayout>
-                                        <ffimageloading:CachedImage
-                                            CacheType="Memory"
-                                            HeightRequest="50"
-                                            Source="{Binding icon}" />
-                                        <Label HorizontalOptions="Center" Text="{Binding name}" />
-                                        <Label
-                                            HorizontalOptions="Center"
-                                            HorizontalTextAlignment="Center"
-                                            Text="{Binding detail}" />
-                                    </StackLayout>
-                                </DataTemplate>
-                            </CarouselView.ItemTemplate>
-                        </CarouselView>
-                    </xct:Expander.Content>
-                </xct:Expander>-->
 
                 <xct:Expander>
                     <xct:Expander.Header>
@@ -343,9 +356,6 @@
 
                     </xct:Expander.Content>
                 </xct:Expander>
-
-
-
             </StackLayout>
         </ScrollView>
 

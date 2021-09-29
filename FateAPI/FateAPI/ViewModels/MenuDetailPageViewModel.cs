@@ -12,15 +12,13 @@ namespace FateAPI.ViewModels
         public List<MenuModel> MenuItems
         {
             get { return _menuItems; }
-            set { _menuItems = value; RaisePropertyChanged(); }
+            set { SetProperty(ref _menuItems, value); }
         }
-
-        private ContentPage _contentPage;
-
-        public ContentPage ContentPage
+        private MenuModel _item;
+        public MenuModel Item
         {
-            get { return _contentPage; }
-            set { _contentPage = value; RaisePropertyChanged(); }
+            get { return _item; }
+            set { SetProperty(ref _item, value); }
         }
         public ICommand TapMenuItemCommand { get; }
         public MenuDetailPageViewModel(INavigationService navigationService) : base(navigationService)
@@ -31,7 +29,17 @@ namespace FateAPI.ViewModels
         }
         private async void OpenPage()
         {
-
+            switch (Item.Id)
+            {
+                case 0:
+                    await NavigationService.NavigateAsync("NavigationPage/ServantListPage");
+                    break;
+                case 1:
+                    await NavigationService.NavigateAsync("NavigationPage/CraftEssencesPage");
+                    break;
+                default:
+                    break;
+            }
         }
         private void FillMenu()
         {

@@ -3,10 +3,10 @@
     x:Class="FateAPI.Views.MenuDetailPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:FateAPI.Views"
     xmlns:prism="http://prismlibrary.com"
     Title="Grand Info"
     prism:ViewModelLocator.AutowireViewModel="True">
-
     <MasterDetailPage.Master>
         <ContentPage Title="Menu">
             <StackLayout>
@@ -18,8 +18,9 @@
 
                 <CollectionView
                     ItemsSource="{Binding MenuItems}"
+                    SelectedItem="{Binding Item}"
                     SelectionChangedCommand="{Binding TapMenuItemCommand}"
-                    SelectionChangedCommandParameter="{Binding MenuItem}"
+                    SelectionChangedCommandParameter="{Binding Item}"
                     SelectionMode="Single">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -52,7 +53,6 @@
 
             </StackLayout>
         </ContentPage>
-
     </MasterDetailPage.Master>
 
 </MasterDetailPage>

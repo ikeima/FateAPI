@@ -33,6 +33,7 @@ namespace FateAPI
             containerRegistry.RegisterForNavigation<ServantPage, ServantPageViewModel>();
             containerRegistry.RegisterForNavigation<ServantListPage, ServantListPageViewModel>();
             containerRegistry.RegisterForNavigation<MenuDetailPage, MenuDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<CraftEssencesPage, CraftEssencesPageViewModel>();
         }
     }
 }

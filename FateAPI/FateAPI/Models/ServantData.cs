@@ -31,11 +31,11 @@ namespace FateAPI.ViewModels
         public int hpMax { get; set; }
         public int[] relateQuestId { get; set; }
         public int growthCurve { get; set; }
-        public int[] atkGrowth { get; set; }
-        public int[] hpGrowth { get; set; }
-        public int[] expGrowth { get; set; }
-        public int[] bondGrowth { get; set; }
-        public int[] expFeed { get; set; }
+        public List<int> atkGrowth { get; set; }
+        public List<int> hpGrowth { get; set; }
+        public List<int> expGrowth { get; set; }
+        public List<int> bondGrowth { get; set; }
+        public List<int> expFeed { get; set; }
         public int bondEquip { get; set; }
         public int[] valentineEquip { get; set; }
         public ValentineScript[] valentineScript { get; set; }

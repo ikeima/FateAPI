@@ -3,7 +3,7 @@
     x:Class="FateAPI.Views.ServantPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:expandable="clr-namespace:OC.Xamarin.Forms.ExpandableView;assembly=OC.Xamarin.Forms.ExpandableView"
+    xmlns:dxc="http://schemas.devexpress.com/xamarin/2014/forms/charts"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:local="clr-namespace:FateAPI.Services.Converters"
     xmlns:prism="http://prismlibrary.com"
@@ -17,6 +17,7 @@
             <local:TypeToImageCardConverter x:Key="typeToCardConverter" />
             <local:RarityToImageConverter x:Key="rarityToImageConverter" />
             <local:ClassNameToImageConverter x:Key="classNameToImageConverter" />
+            <local:GrowthToLabelConverter x:Key="growthToLabelConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
@@ -87,9 +88,7 @@
                         </Grid>
                     </xct:Expander.Header>
                     <xct:Expander.Content>
-                        <StackLayout >
-                            
-                        </StackLayout>
+                        <StackLayout />
                     </xct:Expander.Content>
                 </xct:Expander>
 
@@ -238,6 +237,109 @@
                             </CarouselView.ItemTemplate>
 
                         </CarouselView>
+
+                    </xct:Expander.Content>
+                </xct:Expander>
+
+                <xct:Expander>
+                    <xct:Expander.Header>
+                        <Grid>
+                            <Label FontSize="25" Text="Growth" />
+                            <Image
+                                HeightRequest="40"
+                                HorizontalOptions="End"
+                                Source="expand.png"
+                                VerticalOptions="Start"
+                                WidthRequest="40">
+                                <Image.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={RelativeSource AncestorType={x:Type xct:Expander}}, Path=IsExpanded}"
+                                        TargetType="Image"
+                                        Value="True">
+                                        <Setter Property="Source" Value="collapse.png" />
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+                        </Grid>
+                    </xct:Expander.Header>
+                    <xct:Expander.Content>
+                        <StackLayout>
+                            <Label Padding="10,10,0,0" FontSize="Body">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span
+                                            FontFamily="Bold"
+                                            FontSize="Body"
+                                            Text="Growth Curve: " />
+                                        <Span FontSize="Body" Text="{Binding Servant.growthCurve, Converter={StaticResource growthToLabelConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <dxc:ChartView HeightRequest="300" HorizontalOptions="Fill">
+                                <dxc:ChartView.AxisY>
+                                    <dxc:NumericAxisY>
+                                        <dxc:NumericAxisY.Title>
+                                            <dxc:AxisTitle Text="Level">
+                                                <dxc:AxisTitle.Style>
+                                                    <dxc:TitleStyle>
+                                                        <dxc:TitleStyle.TextStyle>
+                                                            <dxc:TextStyle Size="16" />
+                                                        </dxc:TitleStyle.TextStyle>
+                                                    </dxc:TitleStyle>
+                                                </dxc:AxisTitle.Style>
+                                            </dxc:AxisTitle>
+                                        </dxc:NumericAxisY.Title>
+                                        <dxc:NumericAxisY.Label>
+                                            <dxc:AxisLabel Position="Inside" TextFormat="#.#" />
+                                        </dxc:NumericAxisY.Label>
+                                    </dxc:NumericAxisY>
+                                </dxc:ChartView.AxisY>
+                                <dxc:ChartView.Legend>
+                                    <dxc:Legend
+                                        HorizontalPosition="Center"
+                                        Orientation="LeftToRight"
+                                        VerticalPosition="TopOutside" />
+                                </dxc:ChartView.Legend>
+                                <dxc:ChartView.Series>
+                                    <dxc:LineSeries DisplayName="ATK">
+                                        <dxc:LineSeries.Style>
+                                            <dxc:LineSeriesStyle>
+                                                <dxc:LineSeriesStyle.MarkerStyle>
+                                                    <dxc:MarkerStyle Fill="Red" />
+                                                </dxc:LineSeriesStyle.MarkerStyle>
+                                            </dxc:LineSeriesStyle>
+                                        </dxc:LineSeries.Style>
+
+                                        <dxc:LineSeries.Data>
+                                            <dxc:SeriesDataAdapter ArgumentDataMember="Attack" DataSource="{Binding AttackGrowthData}">
+                                                <dxc:ValueDataMember Member="Level" Type="Value" />
+                                            </dxc:SeriesDataAdapter>
+                                        </dxc:LineSeries.Data>
+                                    </dxc:LineSeries>
+
+                                    <dxc:LineSeries DisplayName="HP">
+                                        <dxc:LineSeries.Style>
+                                            <dxc:LineSeriesStyle>
+                                                <dxc:LineSeriesStyle.MarkerStyle>
+                                                    <dxc:MarkerStyle Fill="DeepSkyBlue" />
+                                                </dxc:LineSeriesStyle.MarkerStyle>
+                                            </dxc:LineSeriesStyle>
+                                        </dxc:LineSeries.Style>
+
+                                        <dxc:LineSeries.Data>
+                                            <dxc:SeriesDataAdapter ArgumentDataMember="HP" DataSource="{Binding HpGrowthData}">
+                                                <dxc:ValueDataMember Member="Level" Type="Value" />
+                                            </dxc:SeriesDataAdapter>
+                                        </dxc:LineSeries.Data>
+                                    </dxc:LineSeries>
+
+                                </dxc:ChartView.Series>
+
+
+
+                            </dxc:ChartView>
+
+                        </StackLayout>
 
                     </xct:Expander.Content>
                 </xct:Expander>

@@ -12,6 +12,7 @@ using FateAPI.Models.SkillsFolder;
 using System.Linq;
 using System.Windows.Input;
 using MvvmHelpers.Commands;
+using FateAPI.Models.GrowthFolder;
 
 namespace FateAPI.ViewModels
 {
@@ -39,11 +40,24 @@ namespace FateAPI.ViewModels
             set { SetProperty(ref _sprites, value); }
         }
 
+        private ObservableCollection<AtkGrowth> _attackGrowthData = new ObservableCollection<AtkGrowth>();
+        public ObservableCollection<AtkGrowth> AttackGrowthData
+        {
+            get { return _attackGrowthData; }
+            set { SetProperty(ref _attackGrowthData, value); }
+        }
+
+        private ObservableCollection<HpGrowth> _hpGrowthData = new ObservableCollection<HpGrowth>();
+        public ObservableCollection<HpGrowth> HpGrowthData
+        {
+            get { return _hpGrowthData; }
+            set { SetProperty(ref _hpGrowthData, value); }
+        }
+
         public ICommand UpdateSizeCommand { get; set; }
         
         public ServantPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            UpdateSizeCommand?.Execute(null);
         }
        
 
@@ -55,17 +69,16 @@ namespace FateAPI.ViewModels
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             id = parameters.GetValue<int>("int").ToString();
-            GetServant();   
-
-
+            GetServant();
         }
 
         private async Task GetServantAsync()
-        {   
+        {
             var res = await web.HttpMethod(HttpMethod.Get)
                 .Execute<ServantData>($"https://api.atlasacademy.io/nice/NA/servant/{id}?lang=en", new CancellationToken());
             Servant = res.Result;
-            
+            Servant.atkGrowth.ForEach(a => AttackGrowthData.Add(new AtkGrowth(a, Servant.atkGrowth.IndexOf(a))));
+            Servant.hpGrowth.ForEach(h => HpGrowthData.Add(new HpGrowth(h, Servant.hpGrowth.IndexOf(h))));
         }
     }
 }

@@ -8,6 +8,7 @@ namespace FateAPI.Views
         public ServantPage()
         {
             DevExpress.XamarinForms.Charts.Initializer.Init();
+            DevExpress.XamarinForms.CollectionView.Initializer.Init();
             InitializeComponent();
         }
 

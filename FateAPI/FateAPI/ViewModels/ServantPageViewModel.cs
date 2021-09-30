@@ -55,6 +55,13 @@ namespace FateAPI.ViewModels
             set { SetProperty(ref _hpGrowthData, value); }
         }
 
+        private ObservableCollection<string> _faces = new ObservableCollection<string>();
+        public ObservableCollection<string> Faces
+        {
+            get { return _faces; }
+            set { SetProperty(ref _faces, value); }
+        }
+
         public ICommand UpdateSizeCommand { get; set; }
         
         public ServantPageViewModel(INavigationService navigationService) : base(navigationService)
@@ -80,6 +87,19 @@ namespace FateAPI.ViewModels
             Servant = res.Result;
             Servant.atkGrowth.ForEach(a => AttackGrowthData.Add(new AtkGrowth(a, Servant.atkGrowth.IndexOf(a))));
             Servant.hpGrowth.ForEach(h => HpGrowthData.Add(new HpGrowth(h, Servant.hpGrowth.IndexOf(h))));
+
+            FacesFill();
+        }
+
+        private void FacesFill()
+        {
+            Faces.Add(Servant.extraAssets.commands.ascension.Select(a => a.Value).FirstOrDefault());
+            string item = Faces[0].Clone<string>();
+
+            for (int i = 0; i < 4; i++)
+            {
+                Faces.Add(item);
+            }
         }
 
     }

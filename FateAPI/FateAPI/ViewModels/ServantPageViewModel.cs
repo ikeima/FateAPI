@@ -13,7 +13,6 @@ using System.Linq;
 using System.Windows.Input;
 using MvvmHelpers.Commands;
 using FateAPI.Models.GrowthFolder;
-using FateAPI.Models.CustomModels;
 
 namespace FateAPI.ViewModels
 {
@@ -54,19 +53,19 @@ namespace FateAPI.ViewModels
             get { return _hpGrowthData; }
             set { SetProperty(ref _hpGrowthData, value); }
         }
-        private ObservableCollection<CardsFaceModel> _cardsFace = new ObservableCollection<CardsFaceModel>();
-        public ObservableCollection<CardsFaceModel> CardsFace
-        {
-            get { return _cardsFace; }
-            set { SetProperty(ref _cardsFace, value); }
-        }
-
         public ICommand UpdateSizeCommand { get; set; }
         
         public ServantPageViewModel(INavigationService navigationService) : base(navigationService)
         {
         }
-       
+
+        private ObservableCollection<string> _faces = new ObservableCollection<string>();
+        public ObservableCollection<string> Faces
+        {
+            get { return _faces; }
+            set { SetProperty(ref _faces, value); }
+        }
+
 
         private async void GetServant()
         {
@@ -86,15 +85,22 @@ namespace FateAPI.ViewModels
             Servant = res.Result;
             Servant.atkGrowth.ForEach(a => AttackGrowthData.Add(new AtkGrowth(a, Servant.atkGrowth.IndexOf(a))));
             Servant.hpGrowth.ForEach(h => HpGrowthData.Add(new HpGrowth(h, Servant.hpGrowth.IndexOf(h))));
-            CardsFaceFill();
+
+            FillFaces();
         }
-        private void CardsFaceFill()
+
+        private void FillFaces()
         {
-            CardsFace.Add(new CardsFaceModel()
+            Faces.Add(Servant.extraAssets.commands.ascension
+                .Where(k => k.Key == "1")
+                .Select(a => a.Value)
+                .FirstOrDefault());
+
+            string item = Faces[0].Clone<string>();
+            for (int i = 0; i < 4; i++)
             {
-                Face = Servant.extraAssets.commands.ascension,
-                Cards = Servant.cards,
-            });
+                Faces.Add(item);
+            }
         }
     }
 }

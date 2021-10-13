@@ -14,6 +14,7 @@ using System.Windows.Input;
 using MvvmHelpers.Commands;
 using FateAPI.Models.GrowthFolder;
 
+
 namespace FateAPI.ViewModels
 {
     public class ServantPageViewModel : ViewModelBase
@@ -53,11 +54,6 @@ namespace FateAPI.ViewModels
             get { return _hpGrowthData; }
             set { SetProperty(ref _hpGrowthData, value); }
         }
-        public ICommand UpdateSizeCommand { get; set; }
-        
-        public ServantPageViewModel(INavigationService navigationService) : base(navigationService)
-        {
-        }
 
         private ObservableCollection<string> _faces = new ObservableCollection<string>();
         public ObservableCollection<string> Faces
@@ -66,6 +62,12 @@ namespace FateAPI.ViewModels
             set { SetProperty(ref _faces, value); }
         }
 
+        public ICommand UpdateSizeCommand { get; set; }
+        
+        public ServantPageViewModel(INavigationService navigationService) : base(navigationService)
+        {
+        }
+       
 
         private async void GetServant()
         {
@@ -86,21 +88,19 @@ namespace FateAPI.ViewModels
             Servant.atkGrowth.ForEach(a => AttackGrowthData.Add(new AtkGrowth(a, Servant.atkGrowth.IndexOf(a))));
             Servant.hpGrowth.ForEach(h => HpGrowthData.Add(new HpGrowth(h, Servant.hpGrowth.IndexOf(h))));
 
-            FillFaces();
+            FacesFill();
         }
 
-        private void FillFaces()
+        private void FacesFill()
         {
-            Faces.Add(Servant.extraAssets.commands.ascension
-                .Where(k => k.Key == "1")
-                .Select(a => a.Value)
-                .FirstOrDefault());
-
+            Faces.Add(Servant.extraAssets.commands.ascension.Select(a => a.Value).FirstOrDefault());
             string item = Faces[0].Clone<string>();
+
             for (int i = 0; i < 4; i++)
             {
                 Faces.Add(item);
             }
         }
+
     }
 }

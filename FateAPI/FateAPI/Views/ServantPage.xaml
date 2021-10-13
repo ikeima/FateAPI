@@ -90,46 +90,66 @@
                         </Grid>
                     </xct:Expander.Header>
                     <xct:Expander.Content>
-                        <StackLayout HorizontalOptions="Center">
-                            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                                <StackLayout HorizontalOptions="Center">
+                        <Grid
+                            HeightRequest="200"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill">
+                            <StackLayout HorizontalOptions="Center">
+                                <StackLayout HorizontalOptions="Start">
                                     <Label FontSize="Body" Text="{Binding Servant.atkBase, StringFormat='Base attack: {0}'}" />
                                     <Label FontSize="Body" Text="{Binding Servant.atkMax, StringFormat='Max attack: {0}'}" />
-                                </StackLayout>
-                                <StackLayout HorizontalOptions="Center">
                                     <Label FontSize="Body" Text="{Binding Servant.hpBase, StringFormat='Base HP: {0}'}" />
                                     <Label FontSize="Body" Text="{Binding Servant.hpMax, StringFormat='Max HP: {0}'}" />
                                 </StackLayout>
-                            </StackLayout>
 
+                                <Grid>
 
-                            <Grid>
-                                <dxcv:DXCollectionView ItemsSource="{Binding Faces}" Orientation="Horizontal">
-                                    <dxcv:DXCollectionView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ffimageloading:CachedImage
-                                                Margin="0,0"
-                                                HeightRequest="55"
-                                                Source="{Binding}" />
-                                        </DataTemplate>
-                                    </dxcv:DXCollectionView.ItemTemplate>
-                                </dxcv:DXCollectionView>
-
-                                <dxcv:DXCollectionView ItemsSource="{Binding Servant.cards}" Orientation="Horizontal">
-                                    <dxcv:DXCollectionView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <ffimageloading:CachedImage HeightRequest="50" Source="{Binding Path=., Converter={StaticResource typeToCardConverter}}" />
-                                                <Grid VerticalOptions="End">
-                                                    <ffimageloading:CachedImage HeightRequest="40" Source="{Binding Path=., Converter={StaticResource typeToImageConverter}}" />
-                                                    <ffimageloading:CachedImage HeightRequest="30" Source="{Binding Path=., Converter={StaticResource typeToTypeImageConverter}}" />
+                                    <dxcv:DXCollectionView
+                                        HorizontalOptions="Fill"
+                                        ItemsSource="{Binding Servant.cards}"
+                                        Orientation="Horizontal"
+                                        VerticalOptions="Start"
+                                        WidthRequest="300">
+                                        <dxcv:DXCollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <ffimageloading:CachedImage Source="{Binding Path=., Converter={StaticResource typeToCardConverter}}" />
                                                 </Grid>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </dxcv:DXCollectionView.ItemTemplate>
-                                </dxcv:DXCollectionView>
-                            </Grid>
-                        </StackLayout>
+                                            </DataTemplate>
+                                        </dxcv:DXCollectionView.ItemTemplate>
+                                    </dxcv:DXCollectionView>
+
+                                    <dxcv:DXCollectionView
+                                        Margin="0,0,0,20"
+                                        ItemsSource="{Binding Faces}"
+                                        Orientation="Horizontal">
+                                        <dxcv:DXCollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ffimageloading:CachedImage HeightRequest="60" Source="{Binding}" />
+                                            </DataTemplate>
+                                        </dxcv:DXCollectionView.ItemTemplate>
+                                    </dxcv:DXCollectionView>
+
+                                    <dxcv:DXCollectionView ItemsSource="{Binding Servant.cards}">
+                                        <dxcv:DXCollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Margin="0,10" VerticalOptions="End">
+                                                    <ffimageloading:CachedImage HeightRequest="40" Source="{Binding Path=., Converter={StaticResource typeToImageConverter}}" />
+                                                    <ffimageloading:CachedImage
+                                                        Margin="0,5"
+                                                        HeightRequest="30"
+                                                        Source="{Binding Path=., Converter={StaticResource typeToTypeImageConverter}}" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </dxcv:DXCollectionView.ItemTemplate>
+
+                                    </dxcv:DXCollectionView>
+
+                                </Grid>
+
+                            </StackLayout>
+                        </Grid>
+
                     </xct:Expander.Content>
                 </xct:Expander>
 
@@ -155,8 +175,8 @@
                         </Grid>
                     </xct:Expander.Header>
                     <xct:Expander.Content>
-                        <dxcv:DXCollectionView Margin="0,0" ItemsSource="{Binding Servant.skills}">
-                            <dxcv:DXCollectionView.ItemTemplate>
+                        <CollectionView Margin="0,0" ItemsSource="{Binding Servant.skills}">
+                            <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <Frame
                                         Padding="10"
@@ -171,8 +191,8 @@
                                         </StackLayout>
                                     </Frame>
                                 </DataTemplate>
-                            </dxcv:DXCollectionView.ItemTemplate>
-                        </dxcv:DXCollectionView>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </xct:Expander.Content>
                 </xct:Expander>
 

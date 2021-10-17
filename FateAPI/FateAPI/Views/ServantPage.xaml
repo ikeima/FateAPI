@@ -90,68 +90,41 @@
                         </Grid>
                     </xct:Expander.Header>
                     <xct:Expander.Content>
-                        <Grid
-                            HeightRequest="200"
-                            HorizontalOptions="Fill"
-                            VerticalOptions="Fill">
-                            <StackLayout HorizontalOptions="Center">
-                                <StackLayout HorizontalOptions="Start">
+                        <StackLayout HeightRequest="300">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout>
                                     <Label FontSize="Body" Text="{Binding Servant.atkBase, StringFormat='Base attack: {0}'}" />
                                     <Label FontSize="Body" Text="{Binding Servant.atkMax, StringFormat='Max attack: {0}'}" />
                                     <Label FontSize="Body" Text="{Binding Servant.hpBase, StringFormat='Base HP: {0}'}" />
                                     <Label FontSize="Body" Text="{Binding Servant.hpMax, StringFormat='Max HP: {0}'}" />
                                 </StackLayout>
 
-                                <Grid>
-                                    <CollectionView ItemsSource="{Binding Servant.cards}" WidthRequest="300">
-                                        <CollectionView.ItemsLayout>
-                                            <GridItemsLayout Orientation="Horizontal" />
-                                        </CollectionView.ItemsLayout>
-                                        <CollectionView.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <ffimageloading:CachedImage Source="{Binding Path=., Converter={StaticResource typeToCardConverter}}" />
-                                                </Grid>
-                                            </DataTemplate>
-                                        </CollectionView.ItemTemplate>
-                                    </CollectionView>
+                                <StackLayout />
+                            </StackLayout>
 
-                                    <CollectionView
-                                        Margin="0,0,0,20"
-                                        ItemsSource="{Binding Faces}"
-                                        WidthRequest="300">
-                                        <CollectionView.ItemsLayout>
-                                            <GridItemsLayout Orientation="Horizontal" />
-                                        </CollectionView.ItemsLayout>
-                                        <CollectionView.ItemTemplate>
-                                            <DataTemplate>
-                                                <ffimageloading:CachedImage HeightRequest="60" Source="{Binding}" />
-                                            </DataTemplate>
-                                        </CollectionView.ItemTemplate>
-                                    </CollectionView>
-
-                                    <CollectionView ItemsSource="{Binding Servant.cards}" WidthRequest="300">
-                                        <CollectionView.ItemsLayout>
-                                            <GridItemsLayout Orientation="Horizontal" />
-                                        </CollectionView.ItemsLayout>
-                                        <CollectionView.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid Margin="0,10" VerticalOptions="End">
-                                                    <ffimageloading:CachedImage HeightRequest="40" Source="{Binding Path=., Converter={StaticResource typeToImageConverter}}" />
-                                                    <ffimageloading:CachedImage
-                                                        Margin="0,5"
-                                                        HeightRequest="30"
-                                                        Source="{Binding Path=., Converter={StaticResource typeToTypeImageConverter}}" />
-                                                </Grid>
-                                            </DataTemplate>
-                                        </CollectionView.ItemTemplate>
-
-                                    </CollectionView>
-
-                                </Grid>
+                            <StackLayout>
+                                <Label FontSize="Body" Text="Deck:" />
+                                <CollectionView
+                                    HeightRequest="100"
+                                    HorizontalOptions="Center"
+                                    ItemsSource="{Binding Faces}">
+                                    <CollectionView.ItemsLayout>
+                                        <GridItemsLayout Orientation="Horizontal" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid HeightRequest="80">
+                                                <ffimageloading:CachedImage Source="{Binding Card, Converter={StaticResource typeToCardConverter}}" />
+                                                <ffimageloading:CachedImage Margin="0,0,0,0" Source="{Binding Face}" />
+                                                <ffimageloading:CachedImage Margin="0,50,0,0" Source="{Binding Card, Converter={StaticResource typeToImageConverter}}" />
+                                                <ffimageloading:CachedImage Margin="0,50,0,0" Source="{Binding Card, Converter={StaticResource typeToTypeImageConverter}}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
 
                             </StackLayout>
-                        </Grid>
+                        </StackLayout>
 
                     </xct:Expander.Content>
                 </xct:Expander>

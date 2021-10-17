@@ -13,7 +13,7 @@ using System.Linq;
 using System.Windows.Input;
 using MvvmHelpers.Commands;
 using FateAPI.Models.GrowthFolder;
-
+using FateAPI.Models.CustoModels;
 
 namespace FateAPI.ViewModels
 {
@@ -55,8 +55,8 @@ namespace FateAPI.ViewModels
             set { SetProperty(ref _hpGrowthData, value); }
         }
 
-        private ObservableCollection<string> _faces = new ObservableCollection<string>();
-        public ObservableCollection<string> Faces
+        private ObservableCollection<CardsFaces> _faces = new ObservableCollection<CardsFaces>();
+        public ObservableCollection<CardsFaces> Faces
         {
             get { return _faces; }
             set { SetProperty(ref _faces, value); }
@@ -93,12 +93,15 @@ namespace FateAPI.ViewModels
 
         private void FacesFill()
         {
-            Faces.Add(Servant.extraAssets.commands.ascension.Select(a => a.Value).FirstOrDefault());
-            string item = Faces[0].Clone<string>();
+            string face = Servant.extraAssets.commands.ascension.Select(a => a.Value).FirstOrDefault();
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 5; i++)
             {
-                Faces.Add(item);
+                Faces.Add(new CardsFaces()
+                {
+                    Card = Servant.cards[i],
+                    Face = face
+                });
             }
         }
 

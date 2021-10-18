@@ -6,6 +6,9 @@ using Prism.Ioc;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;  
 
 namespace FateAPI
 {
@@ -19,6 +22,10 @@ namespace FateAPI
         protected override async void OnInitialized()
         {
             InitializeComponent();
+
+            AppCenter.Start("android=eaa6fedc-d301-4df4-b7ba-94a59135b359;" +
+                  "ios=7befcabc-fcb6-4403-8ebf-0bf20953d9b9",
+                  typeof(Analytics), typeof(Crashes));
 
             await NavigationService.NavigateAsync("MenuDetailPage/NavigationPage/ServantListPage");
         }

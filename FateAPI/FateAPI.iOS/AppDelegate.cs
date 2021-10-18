@@ -2,6 +2,9 @@
 using Prism;
 using Prism.Ioc;
 using UIKit;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 
 namespace FateAPI.iOS
@@ -23,6 +26,8 @@ namespace FateAPI.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App(new iOSInitializer()));
+            AppCenter.Start("7befcabc-fcb6-4403-8ebf-0bf20953d9b9",
+                   typeof(Analytics), typeof(Crashes));
 
             return base.FinishedLaunching(app, options);
         }

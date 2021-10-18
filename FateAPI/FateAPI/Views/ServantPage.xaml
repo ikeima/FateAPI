@@ -102,28 +102,27 @@
                                 <StackLayout />
                             </StackLayout>
 
-                            <StackLayout>
-                                <Label FontSize="Body" Text="Deck:" />
-                                <CollectionView
-                                    HeightRequest="100"
-                                    HorizontalOptions="Center"
-                                    ItemsSource="{Binding Faces}">
-                                    <CollectionView.ItemsLayout>
-                                        <GridItemsLayout Orientation="Horizontal" />
-                                    </CollectionView.ItemsLayout>
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid HeightRequest="80">
-                                                <ffimageloading:CachedImage Source="{Binding Card, Converter={StaticResource typeToCardConverter}}" />
-                                                <ffimageloading:CachedImage Margin="0,0,0,0" Source="{Binding Face}" />
-                                                <ffimageloading:CachedImage Margin="0,50,0,0" Source="{Binding Card, Converter={StaticResource typeToImageConverter}}" />
-                                                <ffimageloading:CachedImage Margin="0,50,0,0" Source="{Binding Card, Converter={StaticResource typeToTypeImageConverter}}" />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
+                            <Label FontSize="Body" Text="Deck:" />
+                            <CollectionView
+                                HeightRequest="80"
+                                HorizontalOptions="Fill"
+                                ItemsSource="{Binding Faces}">
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Horizontal" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <ffimageloading:CachedImage Source="{Binding Card, Converter={StaticResource typeToCardConverter}}" />
+                                            <ffimageloading:CachedImage Margin="0,0,0,0" Source="{Binding Face}" />
+                                            <ffimageloading:CachedImage Margin="0,50,0,0" Source="{Binding Card, Converter={StaticResource typeToImageConverter}}" />
+                                            <ffimageloading:CachedImage Margin="0,50,0,0" Source="{Binding Card, Converter={StaticResource typeToTypeImageConverter}}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
 
-                            </StackLayout>
+
                         </StackLayout>
 
                     </xct:Expander.Content>
@@ -172,7 +171,7 @@
                     </xct:Expander.Content>
                 </xct:Expander>
 
-                <xct:Expander ForceUpdateSizeCommand="{Binding UpdateSizeCommand}">
+                <xct:Expander AnimationLength="0" ForceUpdateSizeCommand="{Binding UpdateSizeCommand}">
                     <xct:Expander.Header>
                         <Grid>
                             <Label FontSize="25" Text="Noble Phantasms" />

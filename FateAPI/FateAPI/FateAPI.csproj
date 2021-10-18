@@ -33,6 +33,8 @@
     <PackageReference Include="DevExpress.XamarinForms.Grid" Version="21.1.5" />
     <PackageReference Include="DevExpress.XamarinForms.Navigation" Version="21.1.5" />
     <PackageReference Include="DevExpress.XamarinForms.Scheduler" Version="21.1.5" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.4.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.4.0" />
     <PackageReference Include="OC.Xamarin.Forms.ExpandableView" Version="1.0.0" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
     <PackageReference Include="SupportLib" Version="1.1.7.15" />

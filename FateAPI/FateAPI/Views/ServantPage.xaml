@@ -19,7 +19,7 @@
             <local:RarityToImageConverter x:Key="rarityToImageConverter" />
             <local:ClassNameToImageConverter x:Key="classNameToImageConverter" />
             <local:GrowthToLabelConverter x:Key="growthToLabelConverter" />
-            <local:TypeToTypeImageConverter x:Key="typeToTypeImageConverter" />
+            <local:TypeToTypeImageConverter x:Key="typeToTypeImageConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>

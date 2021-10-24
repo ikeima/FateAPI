@@ -32,7 +32,7 @@
                         Text="{Binding Servant.name}" />
                     <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                         <Image HeightRequest="30">
-                            <Image.Source>
+                            <Image.Source >
                                 <MultiBinding Converter="{StaticResource classNameToImageConverter}">
                                     <Binding Path="Servant.className" />
                                     <Binding Path="Servant.rarity" />
